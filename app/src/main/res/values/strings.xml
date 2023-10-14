@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ProyectApp_Web</string>
+    <string name="enviar">Enviar</string>
+    <string name="img">Imagen</string>
+    <string name="rol">Rol</string>
+    <string name="email">Email</string>
+    <string name="nombre">Nombre</string>
+    <string name="id">ID</string>
+</resources>
