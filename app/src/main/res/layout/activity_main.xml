@@ -7,7 +7,37 @@
     android:background="#FFFFFF"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registro de Usuarios"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#000000"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="102dp"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/descripcion_logo_umg"
+        android:scaleType="centerInside"
+        android:src="@drawable/umg" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mario Alberto Cruz Peña"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#000000"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0909-18-8521"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#000000"/>
     <EditText
         android:id="@+id/txtUser"
         android:layout_width="match_parent"
@@ -53,5 +83,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/enviar" />
+    <Button
+        android:id="@+id/btnEliminar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Eliminar" />
+    <Button
+        android:id="@+id/btnMostrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mostrar" />
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
+
 
