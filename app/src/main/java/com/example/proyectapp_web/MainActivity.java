@@ -1,7 +1,6 @@
 package com.example.proyectapp_web;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,15 +14,15 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.view.View;
 public class MainActivity extends AppCompatActivity {
     EditText txtUser, txtNombre, txtemail, txtrol, txtimg;
     Button btnEnviar, btnMostrar, btnEliminar;
@@ -46,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         btnMostrar = findViewById(R.id.btnMostrar);
         btnEliminar = findViewById(R.id.btnEliminar);
         listView = findViewById(R.id.listView);
+        Button btnRegistro = findViewById(R.id.btnRegistro);
+        Button btnLogin = findViewById(R.id.btnLogin);
         adapter = new CustomAdapter(this, R.layout.activity_list_item_user, new ArrayList<User>());
         listView.setAdapter(adapter);
         btnEnviar.setOnClickListener(view -> {
@@ -57,7 +58,41 @@ public class MainActivity extends AppCompatActivity {
         btnEliminar.setOnClickListener(view -> {
             eliminarWs();
         });
+        btnRegistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RegistroActivity.class);
+                startActivity(intent);
+            }
+        });
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        String accessToken = sharedPreferences.getString("accessToken", "");
+        if (accessToken.isEmpty()) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        } else {
+            setContentView(R.layout.activity_main);
+            Button btnLogout = findViewById(R.id.btnLogout);
+            btnLogout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    logout();
+                }
+            });
+        }
 
+    }
+    private void logout() {
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
     private void LeerWs() {
         String url = "http://70.37.160.56/api/get-usuarios";
